@@ -18,9 +18,27 @@ In `package.json`:
 In `.gitignore`:
 
 ```
+node_modules
 # testing
 /coverage
 ```
+
+### For ES6
+
+```
+yarn add -D babel-jest @babel/core @babel/preset-env
+```
+
+Create `babel.config.js` with below code:
+
+```js
+module.exports = {
+  presets: [["@babel/preset-env", { targets: { node: "current" } }]],
+};
+```
+
+It's not advisable exclude `targets` as it'll disallow babel from targetting specific environments/versions.
+By default, all ES2015-ES2020 code is transpiled to be ES5 compatible.
 
 ## Test Run
 
