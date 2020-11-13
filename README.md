@@ -23,6 +23,8 @@ node_modules
 /coverage
 ```
 
+[Extension in VSCode](https://github.com/jest-community/vscode-jest)
+
 ### For ES6
 
 ```
