@@ -25,7 +25,15 @@ node_modules
 
 [Extension in VSCode](https://github.com/jest-community/vscode-jest)
 
+For intellisense,
+
+```
+yarn add -D @types/jest
+```
+
 ### For ES6
+
+You can either go with babel and friends route or you should have **Node.js >=v13.x**, and **Jest >=26.1.0** installed.
 
 ```
 yarn add -D babel-jest @babel/core @babel/preset-env

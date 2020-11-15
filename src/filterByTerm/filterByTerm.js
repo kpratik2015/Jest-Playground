@@ -1,3 +1,8 @@
+/**
+ *
+ * @param {any[]} inputArr
+ * @param {string} searchTerm
+ */
 function filterByTerm(inputArr, searchTerm) {
   if (!searchTerm) throw Error("searchTerm cannot be empty");
   const regex = new RegExp(searchTerm, "i");
