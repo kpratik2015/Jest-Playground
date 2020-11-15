@@ -1,6 +1,6 @@
 /**
  *
- * @param {any[]} inputArr
+ * @param {Array<{id: string; url: string;}>} inputArr
  * @param {string} searchTerm
  */
 function filterByTerm(inputArr, searchTerm) {

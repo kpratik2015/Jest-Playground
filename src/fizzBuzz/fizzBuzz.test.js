@@ -1,6 +1,9 @@
 const { fizzBuzz } = require("./fizzBuzz");
 
 describe("FizzBuzz ", () => {
+  it("should be defined", () => {
+    expect(fizzBuzz).toBeDefined();
+  });
   it("should return 1 for 1", () => {
     expect(fizzBuzz(1)).toBe(1);
   });
