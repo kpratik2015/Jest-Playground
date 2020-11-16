@@ -97,3 +97,12 @@ Instead, they should be separate tests.
 1. Unit test - Fully isolated (i.e. testing one function)
 2. Integration test - With Dependencies (e.g. testing a fuction that calls another function)
 3. End-to-End (E2E) test - Full flow (e.g. validating the DOM after a click)
+
+## TDD Katas
+
+- String Calculator
+- Interactions
+- Password Verifier
+- Prime Factors
+- Bowling Game
+- FizzBuzz
