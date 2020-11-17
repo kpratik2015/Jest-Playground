@@ -106,3 +106,19 @@ Instead, they should be separate tests.
 - Prime Factors
 - Bowling Game
 - FizzBuzz
+
+## TDD Takeaways
+
+- Avoid testing implementation details (like a method), test behaviors.
+- Trigger for writing tests is implementing a requirement. If I want the software to do something then I will write a test for that.
+- Test the public API (what contract your software has with the world i.e. what it's offering to do).
+  - Not an HTTP API; the exports from a module.
+- Writing tests to cover the use cases or stories. Use a Given When Then model.
+- The SUT (System Under Test) is not a class. The SUT is the 'exports' from a module - its facade. A class may be the facade, but many classes are implementation details of the module.
+- Write tests only against the stable contract of the API.
+- Test becomes the first consumer of your code. That dictates what it should look like and how it should work. This is objective of TDD.
+- The unit of isolation is the test and not the system under test.
+- You do not write new unit tests when refactoring to clean code. Generally you have conditionals when you're trying to cover new behaviours.
+- Tight coupling is worse than DRY.
+- Code smells to know for refactoring (Martin Fowler, Refactoring): Duplicate code, Parallel Inheritance Heirarchies, Long Method, Lazy Class, Large Class, Speculative Generality, Long Parameter List, Message Chains, Divergent Change, Inappropriate Intimacy, Shotgun Surgery, Data Class, Feature Envy, Refused Bequest, Data Clumps, Comments, Primitive Obsession, Temporary Field, Switch Statements and Middle Man.
+- Prefer DI friendly frameworks that want factories. Implement via IOC if you need to. If you find implementing IOC registration in your tests then something has gone horribly wrong.
