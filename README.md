@@ -122,3 +122,61 @@ Instead, they should be separate tests.
 - Tight coupling is worse than DRY.
 - Code smells to know for refactoring (Martin Fowler, Refactoring): Duplicate code, Parallel Inheritance Heirarchies, Long Method, Lazy Class, Large Class, Speculative Generality, Long Parameter List, Message Chains, Divergent Change, Inappropriate Intimacy, Shotgun Surgery, Data Class, Feature Envy, Refused Bequest, Data Clumps, Comments, Primitive Obsession, Temporary Field, Switch Statements and Middle Man.
 - Prefer DI friendly frameworks that want factories. Implement via IOC if you need to. If you find implementing IOC registration in your tests then something has gone horribly wrong.
+
+## Clean Code
+
+[Ref: Uncle Bob](https://www.youtube.com/watch?v=7EmboKQH8lM)
+
+- Extract functions out of a function until you can't extract anymore. That's how long a function should be.
+- A function should not have more than 2-3 arguments. It's possible to use those 'n' arguments in n! ways.
+- Avoid passing boolean to function as that will cause an IF-ELSE.
+- Switch statements are bad. Use polymorphism instead as there may be a situation when type switched on changes shape. They are like dependency magnet where switch statements allow importing of different modules and a change in switch will require re-deploy/re-compile everything.
+- You don't want GUI changes to break business rules. Isolate GUI from business rules.
+- Avoid side-effects. Side effects is when you call a function and it causes the system to change state. A real world scenario is when you just change order of 2 function calls and everything works -> because they are side-effect pairs. Let's say you wanna make `file.open()` safe. You pass in filename and lambda (function) to open function call and then the lambda will ensure file is closed after function execution completes.
+  - A convention is that a function which does not returns anything could have side-effect and a function which returns something is free of side-effect.
+- We don't know a software is correct but we can prove it's not failing by writing tests. Just like experiements in science can disprove hypothesis. Dijkstra thought with software we were headed towards mathematical constructs but it's actually science. We demonstrate our software is not incorrect by surrounding it with tests.
+- The proper use of comment is to compensate for our failure to express ourselves in code. Try everything else, then comment as last resort. Don't check-in TODO comments; either do or remove it as when you check-in TODOs, you never do it.
+- Design patterns are age old ideas which have been given canonical names so that we can singularly discuss & follow them.
+- Small scopes like `i` in for loop are okay place to have short name variables. You don't need a reminder why that variable exists. That is, variable length depends on the scope that contains them. Opposite for function name because a global function would be called more often.
+- Getting over fear of touching code requires tests. It would be trivial to clean the code if you believe the tests. You decouple the tests from the system. Code coverage is not a management metric.
+- You should pair program enough so that you can cover for each other and review code. Pair for few times a week.
+- Sequence, selection (if statement) and iteration (while loop) are fundamental invariant of programming.
+- When was functional programming invented? The first functional language was LISP in 1957 but functional programming was invented in 1936 with predicate calculus.
+- TDD is a discipline. Disciplines have arbitrary motives. TDD is motivated by something real.
+  - Rule 1: You're not allowed to write any production code until you've first written a test that fails because the production code doesn't exists
+  - Rule 2: You're not allowed to write more of a test than is sufficient to fail (and not compiling is failing)
+  - Rule 3: You're not allowed to write anymore production code than is sufficient to pass the current failing test.
+  - If you follow these rules, through tests you get a kind of documentation which will give every low level detail of implementation.
+- If you're writing the tests first you're creating the code that is easy to test. A word for such code is de-coupled code.
+- Who should be writing tests for GUI? GUIs are really hard to test. The reason is you don't know the right answers. You can test the intelligence part of GUI outside of GUI.
+- Unit tests are tests written by programmer for programmer.
+- TDD is like double entry book keeping which accountants do.
+- Inheritance is the tightest coupling we can have. Or if we do inherit, we want to inherit as few things as possible.
+- TDD Demo (Stack):
+  - First write a test that does nothing and if it passes that means you've an execution environment ready
+  - Then make test fail by writing code for a class that doesn't exists. So you already know what you're going to write so you write a test for that.
+  - Create the class and make the test pass.
+  - Write another failing test e.g. Assert stack isEmpty = true. You find that isEmpty method doesn't exists. So you create it, test passes and then you fail the test by returning false.
+  - Now test fails and you return true to make it pass. Here you've tested your test. You've seen it go from red to green.
+  - .... Write test to force you to write better code.
+  - When you do TDD, you avoid the central behavior for as long as you can. Starting out keep tests simple.
+- Agile is not absence of architecture. It's a framework in which we can apply a good architecture. Architecture changes on day to day basis as you add more lines of code or features.
+- All disciplines feel slow but they speed you up if it's a good discipline. The only way to go fast, is to go well.
+- Cost of modifying software must be low. Meeting requirements is secondary.
+- Programmers see each new requirement as a puzzle piece that must fit into an even more complex puzzle. Solution is to keep the puzzle pieces simple.
+- No stakeholder can prioritize architecture. You've to assert it. A programmer is also a stakeholder.
+- Web is like an I/O system. We built OS to hide I/O from us. The architecture of building does not tells us what it is made of - like bricks, wood, nails, etc. It tells us the intent. Architecture at the top most layer (which is mostly web) should be telling you the intent.
+- If you've got a use case you can convert that into an object. That object is called a control object/interactor.
+  - It contains application specific business rules.
+  - There are 2 types of business rules: 1st that you can automate i.e. application dependent and 2nd you have even if there's no computer i.e. application independent.
+  - Application independent rules can be kept in entities. These entities are controlled by the interactor. The interactor control the execution.
+  - Then you gotta get data in and out. Those are boundry/interfaces.
+  - You can test the interactor without the web. You feed a request model in and you check that you've an appropriate response model
+- MVC came before the design patterns. It was invented by Trygve Reenskaug (Danish). It was designed to be used in small stuff like a button or textbox.
+- What is database? It's an I/O device. The Database is a detail. We don't want the business rules to know about database.
+- An object contains behaviors and may contain data but you're not supposed to know that. A database contains data and not behaviors. ORMs fill in data structures, not objects.
+- A good architecture allows major decisions to be deferred. Like what DB to be used can be decided on later.
+
+Books:
+
+- Object-Oriented Software Engineering: A Use Case Driven Approach by Ivar Jacobson
