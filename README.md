@@ -98,6 +98,56 @@ Instead, they should be separate tests.
 2. Integration test - With Dependencies (e.g. testing a fuction that calls another function)
 3. End-to-End (E2E) test - Full flow (e.g. validating the DOM after a click)
 
+## Better Testible Code
+
+```js
+$("button").on("click", () => fetchThings(showThings));
+function fetchThings(callback) {
+  // can be tested
+  $.getJSON("/path/to/data").then(callback);
+}
+```
+
+**Avoid Side-Effects**
+
+```js
+function buildModelsString(cars) {
+  const models = cars.map((car) => car.model);
+  return models.join(",");
+}
+```
+
+**Use Dependency Injection**
+
+```js
+// depends on an external state database connector instance; hard to test
+function updateRow(rowId, data) {
+  myGlobalDatabaseConnector.update(rowId, data);
+}
+
+// takes a database connector instance in as an argument; easy to test!
+function updateRow(rowId, data, databaseConnector) {
+  databaseConnector.update(rowId, data);
+}
+```
+
+**Give Each Function a Single Purpose**
+
+In functional programming, the act of stringing several single-purpose functions together is called composition
+
+**Don’t Mutate Parameters**
+
+```js
+// sends a new object back instead
+function upperCaseLocation(customerInfo) {
+  return {
+    name: customerInfo.name,
+    location: customerInfo.location.toUpperCase(),
+    age: customerInfo.age,
+  };
+}
+```
+
 ## TDD Katas
 
 - String Calculator
