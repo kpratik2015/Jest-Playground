@@ -23,6 +23,16 @@ for (let i = 0; i < pizzas.length; i += 1) {
   });
 }
 
+test("Check if each pizza's name contains Pizza", () => {
+  pizzas.forEach((pizza) => {
+    expect(pizza.name).toContain("Pizza");
+  });
+  // OR:
+  // for (const pizza of pizzas) {
+  //   expect(pizza.name).toContain("Pizza");
+  // }
+});
+
 // default jest mock function
 test("mock implementation of a basic function", () => {
   const mock = jest.fn(() => "I am a mock function");
@@ -102,8 +112,7 @@ test("pizza data has new york pizza and matches as an object", () => {
     id: 3,
     name: "New York Pizza",
     image: "/images/ny-pizza.jpg",
-    desc:
-      "New York-style pizza has slices that are large and wide with a thin crust that is foldable yet crispy. It is traditionally topped with tomato sauce and mozzarella cheese.",
+    desc: "New York-style pizza has slices that are large and wide with a thin crust that is foldable yet crispy. It is traditionally topped with tomato sauce and mozzarella cheese.",
     price: 8,
   };
   expect(pizzas[2]).toMatchObject(newYorkPizza);
